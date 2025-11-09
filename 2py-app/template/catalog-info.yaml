@@ -4,9 +4,7 @@ metadata:
   name: ${{values.app_name}}
   description: Python app named ${{values.app_name}} that displays time 
   annotations:
-    github.com/project-slug: aumthakkar/${{values.app_name}}
-    
- 
+    github.com/project-slug: aumthakkar/${{values.app_name}}   
 spec:
   type: service
   owner: development
