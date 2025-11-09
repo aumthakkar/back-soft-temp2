@@ -1,0 +1,34 @@
+apiVersion: v1
+items:
+- apiVersion: actions.summerwind.dev/v1alpha1
+  kind: RunnerDeployment
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"actions.summerwind.dev/v1alpha1","kind":"RunnerDeployment","metadata":{"annotations":{},"name":"self-hosted-runner","namespace":"actions-runner-system"},"spec":{"replicas":1,"template":{"spec":{"repository":"aumthakkar/py-app"}}}}
+    creationTimestamp: "2025-07-22T16:09:48Z"
+    generation: 5
+    name: self-hosted-runner
+    namespace: actions-runner-system
+    resourceVersion: "569108"
+    uid: 1b9940f6-c8d5-405d-9e8b-95b17ae27455
+  spec:
+    effectiveTime: null
+    replicas: 1
+    selector: null
+    template:
+      metadata: {}
+      spec:
+        dockerdContainerResources: {}
+        image: ""
+        organization: aum-thakkar
+        resources: {}
+  status:
+    availableReplicas: 1
+    desiredReplicas: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+kind: List
+metadata:
+  resourceVersion: ""

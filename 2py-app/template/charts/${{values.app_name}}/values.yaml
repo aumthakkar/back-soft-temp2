@@ -1,0 +1,49 @@
+replicaCount: 1
+image:
+  repository: aumthakkar/${{values.app_name}}-${{values.app_env}}
+  pullPolicy: IfNotPresent
+  tag: "6f4d20"
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+serviceAccount:
+  create: false
+  automount: true
+  annotations: {}
+  name: ""
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+securityContext: {}
+service:
+  type: ClusterIP
+  port: 5000
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+  hosts:
+    - host: ${{values.app_name}}-${{values.app_env}}.test.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+resources: {}
+livenessProbe:
+  httpGet:
+    path: /api/v1/healthz
+    port: http
+readinessProbe:
+  httpGet:
+    path: /api/v1/healthz
+    port: http
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+volumes: []
+volumeMounts: []
+nodeSelector: {}
+tolerations: []
+affinity: {}

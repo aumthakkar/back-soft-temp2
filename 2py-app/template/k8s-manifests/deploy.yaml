@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app2-py
+  name: app2-py
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app2-py
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app2-py
+    spec:
+      containers:
+      - image: aumthakkar/app2.py:v1
+        name: app2-py-x475p
+        ports:
+        - containerPort: 5000
+        resources: {}
+status: {}
