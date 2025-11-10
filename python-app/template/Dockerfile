@@ -6,4 +6,4 @@ RUN pip install -r /tmp/requirements.txt
 
 COPY ./src /src
 
-ENTRYPOINT ["python3", "/src/${{values.app_name}}"]
+ENTRYPOINT ["python3", "/src/${{values.app_name}}.py"]
