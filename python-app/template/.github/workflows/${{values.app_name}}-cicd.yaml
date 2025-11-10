@@ -89,7 +89,7 @@ jobs:
         
           # Creates the app if it doesn't exist
           argocd app get ${{values.app_name}} || argocd app create ${{values.app_name}} \
-          --destination-namespace ${{values.app_env}} \
+          --dest-namespace ${{values.app_env}} \
           --dest-server https://kubernetes.default.svc \
           --path charts/${{values.app_name}} \
           --repo ${repo} \
