@@ -72,10 +72,31 @@ jobs:
           argocd login argocd-server.argocd \
           --insecure \
           --grpc-web \
-          --username admin \
+          --username ${{ '${{secrets.ARGOCD_USERNAME}}' }} \
           --password ${{ '${{secrets.ARGOCD_PASSWORD}}' }}
 
+      -
+        name: ArgoCD Repo add, Create App and Sync
+        shell: bash
+        run: |
+          # Connects to the github repo
+          repo=https://github.com/aum-thakkar/${{values.app_name}}.git
+          argocd repo list ${repo} | grep ${repo} || argocd repo add ${repo}
+        
+          # Creates the app if it doesn't exist
+          argocd app get ${{values.app_name}} || argocd app create ${{values.app_name}} \
+          --destination-namespace ${{values.app_env}} \
+          --dest-server https://kubernetes.default.svc \
+          --path charts/${{values.app_name}} \
+          --repo ${repo} \
+          --revision main \
+          --sync-policy manual \
+          --sync-option CreateNamespace=true \
+          --values values-${{values.app_env}}.yaml
+
+          # Sync the App
           argocd app sync ${{values.app_name}}
+          argocd app wait ${{values.app_name}} --timeout 180
 
 
           
