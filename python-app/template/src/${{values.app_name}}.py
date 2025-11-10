@@ -13,7 +13,7 @@ def info():
     return jsonify({
         "hostname" : socket.gethostname(),
         "time" : time.ctime(),
-        "message" : "You are doing great Pranav! Way to go!! <3"
+        "message" : "You are doing great Pranav! Way to go!! <3",
         "env" : "${{values.app_env}}",
         "app_name" : "${{values.app_name}}"
     })
