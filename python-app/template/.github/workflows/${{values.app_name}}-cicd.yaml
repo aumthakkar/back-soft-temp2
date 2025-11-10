@@ -29,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: aumthakkar/${{ '${{values.app_name}}' }}:${{ '${{env.COMMIT_ID}}' }}
+          tags: aumthakkar/${{values.app_name}}:${{ '${{env.COMMIT_ID}}' }}
 
     outputs:
       commit_id: ${{ '${{env.COMMIT_ID}}' }}
@@ -49,7 +49,7 @@ jobs:
           echo "${{ '${{needs.ci.outputs.commit_id}}' }}"
           sudo apt update && sudo apt install python3-pip -y
           pip3 install yq --break-system-packages
-          yq -Yi '.image.tag = "${{ '${{needs.ci.outputs.commit_id}}' }}"' charts/${{ '${{values.app_name}}' }}//values-${{values.app_env}}.yaml
+          yq -Yi '.image.tag = "${{ '${{needs.ci.outputs.commit_id}}' }}"' charts/${{values.app_name}}//values-${{values.app_env}}.yaml
 
       - 
         name: Commit changes back to your Github repo
